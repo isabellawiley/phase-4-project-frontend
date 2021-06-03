@@ -1,26 +1,14 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import FoundList from "./FoundList";
+import EditProfile from "./EditProfile";
 
-
-function Profile(){
-    const {id} = useParams();
-    const [nerd, setNerd] = useState();
-
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/nerds/${id}`)
-        .then(res => res.json())
-        .then((nerd) => setNerd(nerd))
-    },[id])
-
-    // console.log(nerd.characters)
+function Profile({currentNerd}){
 
     return(
         <div>
             <h1>Nerd Profile</h1>
-            <h2>{nerd.name}</h2>
-            <FoundList characters={nerd.characters} />
+            <EditProfile currentNerd={currentNerd} />
+            <h2>{currentNerd.name}</h2>
+            <FoundList characters={currentNerd.characters} />
         </div>
     )
 }

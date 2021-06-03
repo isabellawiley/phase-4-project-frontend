@@ -2,7 +2,7 @@ import { useHistory } from "react-router"
 import NavBar from "./NavBar";
 
 
-function Header(){
+function Header({logout}){
     const history = useHistory();
 
     function handleClick(){
@@ -12,7 +12,7 @@ function Header(){
     return(
         <div>
             <h1 onClick={handleClick} >Marvel-Go</h1>
-            <NavBar />
+            <NavBar logout={logout} />
         </div>
     )
 }
