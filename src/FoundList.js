@@ -1,8 +1,9 @@
+import FoundCard from "./FoundCard";
 
 
 function FoundList({characters}){
     let charactersList = characters.map((character) => {
-        return <h2>{character.name}</h2>
+        return <FoundCard key={character.id} character={character} />
     })
 
     return(

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import CharacterCard from "./CharacterCard";
 
-function Home({characters}){
+function Home({characters, currentNerd}){
     
     let charactersList = characters.map((character) => {
-        return <CharacterCard key={character.id} character={character} />
+        return <CharacterCard key={character.id} character={character} currentNerd={currentNerd} />
     })
 
     return(

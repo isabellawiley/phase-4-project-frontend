@@ -58,7 +58,7 @@ function App() {
       <Header logout={logout} />
       <Switch>
         <Route exact path="/">
-          <Home characters={characters} />
+          <Home characters={characters} currentNerd={currentNerd} />
         </Route>
         <Route exact path="/profile">
           <Profile currentNerd={currentNerd} />

@@ -1,7 +1,7 @@
 import AddToFoundList from "./AddToFoundList";
 import CharacterDetails from "./CharacterDetails";
 
-function CharacterCard({character}){
+function CharacterCard({character, currentNerd}){
     const {name, image} = character;
 
     return(
@@ -9,7 +9,7 @@ function CharacterCard({character}){
             <img alt={name} src={image} />
             <h3>{name}</h3>
             <CharacterDetails character={character} />
-            <AddToFoundList character={character} />
+            <AddToFoundList character={character} currentNerd={currentNerd} />
         </div>
     );
 }
