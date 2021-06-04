@@ -6,14 +6,34 @@ import { useEffect, useState } from 'react';
 import Profile from './Profile';
 import Login from './Login';
 import SignUp from './SignUp';
+import { createGlobalStyle } from "styled-components"
+
+const GlobalStyle= createGlobalStyle`
+  /* body {
+    background-color: #699e5c
+  } */
+  
+
+`
 
 function App() {
 
   // const [nerds, setNerds] = useState([]);
   const [characters, setCharacters] = useState([]);
+  const [locations, setLocations] = useState([]);
   const history = useHistory();
-  const [currentNerd, setCurrentNerd] = useState(null);
-  const [currentNerdId, setCurrentNerdId] = useState(null);
+  const [currentNerd, setCurrentNerd] = useState({});
+  
+  useEffect(() => {
+    const loggedInNerd = JSON.parse(localStorage.getItem("loggedNerd"));
+    console.log(loggedInNerd)
+    if(localStorage.getItem("loggedNerd")){
+      setCurrentNerd(loggedInNerd);
+    }
+    else {
+      history.push("/login");
+    }
+  },[])
 
   useEffect(() => {
     fetch('http://localhost:3000/characters', {
@@ -40,31 +60,40 @@ function App() {
   // }, [])
 
   useEffect(() => {
-    fetch(`http://localhost:3000/nerds/${currentNerdId}`)
+    fetch('http://localhost:3000/locations', {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
+    })
     .then(res => res.json())
-    .then((nerd) => setCurrentNerd(nerd))
-  },[currentNerdId])
+    .then(locations => setLocations(locations))
+  }, [])
 
   function logout(){
     localStorage.clear()
     history.push("/login")
-    setCurrentNerd(null)
+    setCurrentNerd({})
   }
 
   console.log(currentNerd)
+
+  // if(currentNerd){
+  //   return <div>{currentNerd.name} is logged in</div>
+  // }
   
   return (
     <div className="App">
       <Header logout={logout} />
       <Switch>
         <Route exact path="/">
-          <Home characters={characters} currentNerd={currentNerd} />
+          <Home characters={characters} currentNerd={currentNerd} locations={locations} />
         </Route>
         <Route exact path="/profile">
-          <Profile currentNerd={currentNerd} />
+          <Profile currentNerd={currentNerd} setCurrentNerd={setCurrentNerd} logout={logout} />
         </Route>
         <Route exact path="/login" >
-          <Login setCurrentNerdId={setCurrentNerdId} />
+          <Login setCurrentNerd={setCurrentNerd} />
         </Route>
         <Route exact path="/signup" >
           <SignUp setCurrentNerd={setCurrentNerd} />

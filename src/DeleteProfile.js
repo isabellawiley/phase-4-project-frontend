@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { useHistory } from "react-router";
 import { Button, Modal } from "semantic-ui-react";
 
-function DeleteProfile({currentNerd}){
+function DeleteProfile({currentNerd, logout}){
     const [open, setOpen] = useState(false);
-    const history = useHistory();
 
     function handleDelete(e){
         e.preventDefault();
@@ -14,7 +12,7 @@ function DeleteProfile({currentNerd}){
         })
         .then(res => res.json())
         .then(() => {
-            history.push('/login');
+            logout();
         })
     }
 

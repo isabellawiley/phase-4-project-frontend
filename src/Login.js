@@ -1,7 +1,8 @@
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 
-function Login({setCurrentNerdId}){
+function Login({setCurrentNerd}){
     const history = useHistory();
 
     const handleLogin = (e) => {
@@ -20,8 +21,9 @@ function Login({setCurrentNerdId}){
         .then(res => res.json())
         .then((nerdInfo) => {
             console.log(nerdInfo)
-            localStorage.token = nerdInfo.token
-            setCurrentNerdId(nerdInfo.id)
+            setCurrentNerd(nerdInfo)
+            localStorage.setItem("loggedNerd", JSON.stringify(nerdInfo));
+            console.log(localStorage.getItem("loggedNerd"))
             history.push("/")
         })
     }
@@ -29,6 +31,7 @@ function Login({setCurrentNerdId}){
     return(
         <div>
             <h2>Login</h2>
+            <h2>Not a nerd yet? <Link to="/signup" >Sign up!</Link> </h2>
             <form onSubmit={(e) => handleLogin(e)} >
                 <label>Username</label>
                 <input name="username" type="text" />

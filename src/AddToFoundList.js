@@ -1,10 +1,15 @@
 import { useState } from "react";
 import {Modal, Image, Button} from "semantic-ui-react"
+import MultiSelect from "react-multi-select-component";
 
-function AddToFoundList({character, currentNerd}){
+function AddToFoundList({character, currentNerd, locations}){
     const {name, image} = character;
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState("");
+    const [selected, setSelected] = useState([]);
+    let options = [];
+
+    locations.map((loc) => options.push({label: loc.address, value: loc.address}))
 
     function handleSubmit(e){
         e.preventDefault();
@@ -34,7 +39,6 @@ function AddToFoundList({character, currentNerd}){
             alert(`Sorry, ${name} is not in that location :(`);
             setOpen(false);
         }
-
     }
 
     return(
@@ -48,7 +52,12 @@ function AddToFoundList({character, currentNerd}){
                     <Modal.Description>
                         <form onSubmit={handleSubmit} >
                             <label>Enter address of found character: </label>
-                            <input id="address" type="text" onChange={(e) => setAddress(e.target.value)} ></input>
+                            <MultiSelect 
+                            options={options}
+                            value={selected}
+                            onChange={setSelected}
+                            labelledBy="Select" 
+                            />
                             <input type="submit" value="Submit Address" ></input>
                         </form>
                     </Modal.Description>
