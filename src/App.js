@@ -7,28 +7,36 @@ import Profile from './Profile';
 import Login from './Login';
 import SignUp from './SignUp';
 import { createGlobalStyle } from "styled-components"
+import Leaderboard from './Leaderboard';
 
 const GlobalStyle= createGlobalStyle`
   /* body {
-    background-color: #699e5c
+    background-color: #504a4a;
   } */
+
   
 
 `
 
 function App() {
 
-  // const [nerds, setNerds] = useState([]);
+  const [allNerds, setAllNerds] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [locations, setLocations] = useState([]);
   const history = useHistory();
   const [currentNerd, setCurrentNerd] = useState({});
+  console.log(currentNerd)
+  console.log(allNerds)
   
   useEffect(() => {
     const loggedInNerd = JSON.parse(localStorage.getItem("loggedNerd"));
     console.log(loggedInNerd)
-    if(localStorage.getItem("loggedNerd")){
-      setCurrentNerd(loggedInNerd);
+    if(loggedInNerd){
+      fetch(`http://localhost:3000/nerds/${loggedInNerd.id}`)
+      .then(res => res.json())
+      .then((nerd) => {
+        setCurrentNerd(nerd);
+      })
     }
     else {
       history.push("/login");
@@ -48,16 +56,16 @@ function App() {
     })
   }, [])
 
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/nerds', {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.token}`
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(nerds => setNerds(nerds))
-  // }, [])
+  useEffect(() => {
+    fetch('http://localhost:3000/nerds', {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
+    })
+    .then(res => res.json())
+    .then(nerds => setAllNerds(nerds))
+  }, [])
 
   useEffect(() => {
     fetch('http://localhost:3000/locations', {
@@ -75,15 +83,10 @@ function App() {
     history.push("/login")
     setCurrentNerd({})
   }
-
-  console.log(currentNerd)
-
-  // if(currentNerd){
-  //   return <div>{currentNerd.name} is logged in</div>
-  // }
   
   return (
     <div className="App">
+      <GlobalStyle />
       <Header logout={logout} />
       <Switch>
         <Route exact path="/">
@@ -97,6 +100,9 @@ function App() {
         </Route>
         <Route exact path="/signup" >
           <SignUp setCurrentNerd={setCurrentNerd} />
+        </Route>
+        <Route exact path="/leaderboard">
+          <Leaderboard allNerds={allNerds} />
         </Route>
       </Switch>
     </div>

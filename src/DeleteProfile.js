@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { Button, Modal } from "semantic-ui-react";
+import { Button, Modal } from 'react-bootstrap';
 
 function DeleteProfile({currentNerd, logout}){
-    const [open, setOpen] = useState(false);
+    const [show, setShow] = useState(false);
+  
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     function handleDelete(e){
         e.preventDefault();
@@ -18,8 +21,21 @@ function DeleteProfile({currentNerd, logout}){
 
     return(
         <div>
-            <Modal onClose={() => setOpen(false) } onOpen={() => setOpen(true)}
-            open={open} trigger={<Button>Delete Profile</Button>} >
+            <Button variant='dark' style={{ margin: '10px'}} onClick={handleShow}>Delete Profile</Button>
+
+            <Modal show={show} onHide={handleClose} size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title><h2><strong>Edit Profile</strong></h2></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form onSubmit={handleDelete} >
+                        <label>Are you sure you want to delete your account?</label>
+                        <input type="submit" value="Yes, I'm sure I no longer want to be the coolest nerd."></input>
+                    </form>
+                </Modal.Body>
+            </Modal>
+            {/* <Modal onClose={() => setOpen(false) } onOpen={() => setOpen(true)}
+            open={open} trigger={<Button variant='dark' style={{ margin: '10px'}}>Delete Profile</Button>} >
                 <h2>Edit Profile</h2>
                 <Modal.Content>
                     <Modal.Description>
@@ -29,7 +45,7 @@ function DeleteProfile({currentNerd, logout}){
                         </form>
                     </Modal.Description>
                 </Modal.Content>
-            </Modal>
+            </Modal> */}
         </div>
     )
 }

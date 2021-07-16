@@ -6,12 +6,11 @@ function Profile({currentNerd, setCurrentNerd, logout}){
 console.log(currentNerd)
     return(
         <div>
-            <h1>Nerd Profile</h1>
+            <h1>{currentNerd.name}'s Nerd Profile</h1>
             <EditProfile currentNerd={currentNerd} setCurrentNerd={setCurrentNerd} />
-            <h2>{currentNerd.name}</h2>
+            <DeleteProfile currentNerd={currentNerd} logout={logout}/>
             <h2>{currentNerd.total_points} Points</h2>
             <FoundList characters={currentNerd.characters} />
-            <DeleteProfile currentNerd={currentNerd} logout={logout}/>
         </div>
     )
 }

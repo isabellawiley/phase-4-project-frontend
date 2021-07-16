@@ -1,15 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { Nav, Navbar } from "react-bootstrap";
 
 function NavBar({logout}){
 
     return(
         <div>
-            <nav>
-                <button onClick={logout} >Logout</button>
-                {/* <NavLink to={'/nerd/:id'} >Profile</NavLink> */}
-                {/* <NavLink ></NavLink>
-                <NavLink ></NavLink> */}
-            </nav>
+            <Navbar>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav" >
+                    <Nav as="h3" className="mr-auto">
+                        <Nav.Link href='/'>Home</Nav.Link>
+                        <Navbar.Text><strong>|</strong></Navbar.Text>
+                        <Nav.Link href='/leaderboard'>Leaderboard</Nav.Link>
+                        <Navbar.Text><strong>|</strong></Navbar.Text>
+                        <Nav.Link href='/profile'>My Nerd Profile</Nav.Link>
+                        <Navbar.Text><strong>|</strong></Navbar.Text>
+                        <Nav.Link onClick={logout}>Logout</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
         </div>
     )
 }

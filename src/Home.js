@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { CardDeck } from "react-bootstrap";
 import CharacterCard from "./CharacterCard";
 
 function Home({characters, currentNerd, locations}){
@@ -8,10 +8,13 @@ function Home({characters, currentNerd, locations}){
     })
 
     return(
-        <div>
-            <Link to='/profile' >My Nerd Profile</Link>
-            <h2>Marvel Characters List</h2>
-            {charactersList}
+        <div className="center">
+            <h1>Marvel Characters List</h1>
+            <div>
+                <CardDeck className="cardContainer" >
+                    {charactersList}
+                </CardDeck>
+            </div>
         </div>
     );
 }

@@ -11,8 +11,10 @@ function Header({logout}){
 
     return(
         <div>
-            <h1 onClick={handleClick} >Marvel-Go</h1>
+            <header>
+            <img className="logo" onClick={handleClick} src="https://see.fontimg.com/api/renderfont4/Dj83/eyJyIjoiZnMiLCJoIjoxNzQsInciOjMwMDAsImZzIjo1OCwiZmdjIjoiI0ZGRkZGRiIsImJnYyI6IiNGRjExMTEifQ/TUFSVkVMR08/marvel-regular.png" alt="Marvel fonts"/>
             <NavBar logout={logout} />
+            </header>
         </div>
     )
 }

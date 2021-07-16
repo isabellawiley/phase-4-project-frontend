@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button, Modal } from "semantic-ui-react";
+import { Modal } from "semantic-ui-react";
+import { Button } from 'react-bootstrap';
 
 function EditProfile({currentNerd, setCurrentNerd}){
     const [open, setOpen] = useState(false);
@@ -41,7 +42,7 @@ function EditProfile({currentNerd, setCurrentNerd}){
     return(
         <div>
             <Modal onClose={() => setOpen(false) } onOpen={() => setOpen(true)}
-            open={open} trigger={<Button>Edit Profile</Button>} >
+            open={open} trigger={<Button variant='dark'>Edit Profile</Button>} >
                 <h2>Edit Profile</h2>
                 <Modal.Content>
                     <Modal.Description>
