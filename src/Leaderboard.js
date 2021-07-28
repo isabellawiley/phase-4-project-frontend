@@ -16,67 +16,73 @@ function Leaderboard({allNerds}){
     return(
         <div style={{width: '40%', margin: 'auto', paddingBottom: '100px'}}>
             <h1>WHO WILL BE THE ULTIMATE NERD?</h1>
-            <Table striped bordered variant="dark">
-                <thead>
-                    <tr>
-                        <th width='100'>Rank</th>
-                        <th width='150'>Name</th>
-                        <th width='150'>Total Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>{topTenNerdsArr[0].name}</td>
-                        <td>{topTenNerdsArr[0].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>{topTenNerdsArr[1].name}</td>
-                        <td>{topTenNerdsArr[1].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>{topTenNerdsArr[2].name}</td>
-                        <td>{topTenNerdsArr[2].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>{topTenNerdsArr[3].name}</td>
-                        <td>{topTenNerdsArr[3].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>{topTenNerdsArr[4].name}</td>
-                        <td>{topTenNerdsArr[4].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>{topTenNerdsArr[5].name}</td>
-                        <td>{topTenNerdsArr[5].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>{topTenNerdsArr[6].name}</td>
-                        <td>{topTenNerdsArr[6].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>{topTenNerdsArr[7].name}</td>
-                        <td>{topTenNerdsArr[7].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>{topTenNerdsArr[8].name}</td>
-                        <td>{topTenNerdsArr[8].total_points}</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>{topTenNerdsArr[9].name}</td>
-                        <td>{topTenNerdsArr[9].total_points}</td>
-                    </tr>
-                </tbody>
-            </Table>
+            { allNerds.length ? 
+            <div>
+                <Table striped bordered variant="dark" style={{marginTop: "20px"}}>
+                    <thead>
+                        <tr>
+                            <th width='100'>Rank</th>
+                            <th width='150'>Name</th>
+                            <th width='150'>Total Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>{topTenNerdsArr[0].name}</td>
+                            <td>{topTenNerdsArr[0].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>{topTenNerdsArr[1].name}</td>
+                            <td>{topTenNerdsArr[1].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>{topTenNerdsArr[2].name}</td>
+                            <td>{topTenNerdsArr[2].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>{topTenNerdsArr[3].name}</td>
+                            <td>{topTenNerdsArr[3].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>{topTenNerdsArr[4].name}</td>
+                            <td>{topTenNerdsArr[4].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>{topTenNerdsArr[5].name}</td>
+                            <td>{topTenNerdsArr[5].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>{topTenNerdsArr[6].name}</td>
+                            <td>{topTenNerdsArr[6].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>{topTenNerdsArr[7].name}</td>
+                            <td>{topTenNerdsArr[7].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>{topTenNerdsArr[8].name}</td>
+                            <td>{topTenNerdsArr[8].total_points}</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>{topTenNerdsArr[9].name}</td>
+                            <td>{topTenNerdsArr[9].total_points}</td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </div>
+            : 
+            <h1>Loading...</h1>
+            }
             {/* <Card bg='light' style={{ width: '30rem', backgroundColor: 'white' }}>
                 <Card.Header as='h1'>Leaderboard</Card.Header>
                 <ListGroup variant='flush'>
