@@ -4,7 +4,7 @@ function NavBar({logout}){
 
     return(
         <div>
-            <Navbar>
+            <Navbar variant="dark">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav as="h3" className="mr-auto">

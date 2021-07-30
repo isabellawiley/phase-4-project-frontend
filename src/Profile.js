@@ -11,7 +11,7 @@ console.log(currentNerd)
                 <h1>{currentNerd.name}'s Nerd Profile</h1>
                 <EditProfile currentNerd={currentNerd} setCurrentNerd={setCurrentNerd} />
                 <DeleteProfile currentNerd={currentNerd} logout={logout}/>
-                <h2>{currentNerd.total_points} Points</h2>
+                <h2><strong>Total Found Characters Points: </strong>{currentNerd.total_points} Points</h2>
                 <FoundList characters={currentNerd.characters} />
             </div>
             :

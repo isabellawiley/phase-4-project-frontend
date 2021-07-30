@@ -18,6 +18,7 @@ function FoundList({characters}){
 
     return(
         <div className="center">
+            <hr/>
             <h1>Found Characters List</h1>
             <CardDeck>
                 {charactersList}

@@ -21,7 +21,7 @@ function Leaderboard({allNerds}){
                 <Table striped bordered variant="dark" style={{marginTop: "20px"}}>
                     <thead>
                         <tr>
-                            <th width='100'>Rank</th>
+                            <th width='70'>Rank</th>
                             <th width='150'>Name</th>
                             <th width='150'>Total Points</th>
                         </tr>

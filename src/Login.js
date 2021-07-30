@@ -1,3 +1,4 @@
+import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -20,25 +21,36 @@ function Login({setCurrentNerd}){
         })
         .then(res => res.json())
         .then((nerdInfo) => {
-            console.log(nerdInfo)
+            // console.log(nerdInfo)
             setCurrentNerd(nerdInfo)
             localStorage.setItem("loggedNerd", JSON.stringify(nerdInfo));
-            console.log(localStorage.getItem("loggedNerd"))
+            // console.log(localStorage.getItem("loggedNerd"))
             history.push("/")
         })
     }
 
     return(
-        <div>
-            <h2>Login</h2>
+        <div className="loginForm">
+            <h1>Login</h1>
             <h2>Not a nerd yet? <Link to="/signup" >Sign up!</Link> </h2>
-            <form onSubmit={(e) => handleLogin(e)} >
+            <Form onSubmit={(e) => handleLogin(e)}>
+                <Form.Group>
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control type="text" placeholder="Enter Username" />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Enter Password" />
+                </Form.Group>
+                <Button variant="dark" type="submit">Login</Button>
+            </Form>
+            {/* <form onSubmit={(e) => handleLogin(e)} >
                 <label>Username</label>
                 <input name="username" type="text" />
                 <label>Password</label>
                 <input name="password" type="password" />
                 <input type="submit" />
-            </form>
+            </form> */}
         </div>
     )
 }

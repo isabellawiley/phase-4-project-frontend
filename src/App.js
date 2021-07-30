@@ -25,8 +25,8 @@ function App() {
   const [locations, setLocations] = useState([]);
   const history = useHistory();
   const [currentNerd, setCurrentNerd] = useState({});
-  console.log(currentNerd)
-  console.log(allNerds)
+  // console.log(currentNerd)
+  // console.log(allNerds)
   
   useEffect(() => {
     const loggedInNerd = JSON.parse(localStorage.getItem("loggedNerd"));

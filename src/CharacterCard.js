@@ -1,9 +1,11 @@
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import AddToFoundList from "./AddToFoundList";
 import CharacterDetails from "./CharacterDetails";
 
 function CharacterCard({character, currentNerd, locations}){
     const {name, image} = character;
+    const found = currentNerd.characters.find(char => char.id == character.id);
+    console.log(found)
 
     return(
         <div>
@@ -12,7 +14,11 @@ function CharacterCard({character, currentNerd, locations}){
                 <Card.Body>
                     <Card.Title as='h2'>{name}</Card.Title>
                     <CharacterDetails character={character} />
-                    <AddToFoundList character={character} currentNerd={currentNerd} locations={locations} />
+                    { found ? 
+                        <Button variant="secondary" disabled><h5>Found</h5></Button>
+                    :
+                        <AddToFoundList character={character} currentNerd={currentNerd} locations={locations} />
+                    }
                 </Card.Body>
             </Card>
         </div>

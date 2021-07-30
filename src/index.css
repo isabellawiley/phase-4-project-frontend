@@ -115,3 +115,18 @@ header {
 .bold_p {
   font-weight: bold;
 }
+
+td {
+  font-size: large;
+}
+
+th {
+  font-size: x-large;
+}
+
+.loginForm {
+  margin: auto;
+  width: 30%;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
